@@ -1,7 +1,7 @@
 /****************************************************************************************************************************************
   Title          : tree_collection.h
   Author         : Jaime Canizales
-  Created on     : March 26, 2017
+  Created on     : January 1st, 2018
   Description    : The header file for the TreeCollection class
   Purpose        : Encapsulates the containers that represent the set of trees
                    and the collections properties

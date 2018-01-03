@@ -1,7 +1,7 @@
 /******************************************************************************************************************************************
 Title  : Tree.cpp
 Author : Jaime Canizales 
-Created on : March 20, 2017
+Created on : January 1st, 2018
 Purpose : The tree class creates an object that encapsulates all the data for a specific tree. The tree objects are to be stored in the
           treecollection class.
 
@@ -83,7 +83,7 @@ bool operator== ( const Tree &t1, const Tree &t2 )
 
 bool operator< ( const Tree &t1, const Tree &t2 )
 {
-    if ( t1.spc_common < t2.spc_common )
+    if ( t1.spc_common <= t2.spc_common )
        if( t1.tree_id < t2.tree_id )
           return true;
  

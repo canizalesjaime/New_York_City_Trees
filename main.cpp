@@ -1,7 +1,7 @@
 /******************************************************************************************************************************************
 Title  : Treemain.cpp
 Author : Jaime Canizales 
-Created on : March 20, 2017
+Created on : January 1st, 2018
 Purpose : To open CSV file and check its correctness, then separate the data from the file into separate tree objects and store those 
           tree objects in a treecollection class. Also responsible for user interactive mode.
 
@@ -12,7 +12,7 @@ Purpose : To open CSV file and check its correctness, then separate the data fro
 #include "Tree.h"
 #include <fstream>
 #include <sstream>
-#include "tree_collection.h"
+#include "Tree_Collection.h"
 #include "avl_Tree.h"
 #include <list>
 
@@ -47,31 +47,23 @@ int main ( int argc, char * argv[])
         string reader = "";
         string quote;
 
-        string tempData[42];
+        string tempData[9];
 
-        for ( int i = 0; i < 42 ; i ++)
+        for ( int i = 0; i < 9 ; i++)
         {
-
             getline(strStream, reader, ',');
-
-            if(reader[0] == '"')
-            {
-              getline(strStream, quote, '"');
-              continue;
-            }
-
             tempData[i] = reader;
         }   
       
         treeid = tempData[0];
-        dbh    = tempData[3];
-        stat   = tempData[6];
-        heal   = tempData[7];
-        spccommon = tempData[9];
-        zipco  = tempData[25];
-        bor    = tempData[29];
-        x_     = tempData[39];
-        y_     = tempData[40];
+        dbh    = tempData[1];
+        stat   = tempData[2];
+        heal   = tempData[3];
+        spccommon = tempData[4];
+        zipco  = tempData[5];
+        bor    = tempData[6];
+        x_     = tempData[7];
+        y_     = tempData[8];
 
                
         int treeidNum, dbhNum, zipcoNum;
@@ -90,6 +82,9 @@ int main ( int argc, char * argv[])
         catalog.insert(temp);
               
     }
+
+//Tree collection object created
+//***************************************************************************************************************************************
           
         string look;
         while ( look != "quit" )

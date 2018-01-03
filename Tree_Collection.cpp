@@ -1,7 +1,7 @@
 /****************************************************************************************************************************************
   Title          : Tree_Collection.cpp
   Author         : Jaime Canizales
-  Created on     : March 26, 2017
+  Created on     : january 1st, 2018
   Description    : The implementation file for the TreeCollection class
   Purpose        : Encapsulates the containers that represent the set of trees
                    and the collections properties
@@ -13,7 +13,7 @@
 #include <list>
 #include "Tree.h"
 #include "avl_Tree.h"
-#include "tree_collection.h"
+#include "Tree_Collection.h"
 
 using namespace std;
 
@@ -73,35 +73,44 @@ list<string> TreeCollection::get_matching_species(const string & species_name)
       list<string> matches ;
 
      for ( it = tree_species.begin(); it != tree_species.end(); ++it)
-         {
-              string build = *it;
-              string check;
+     {
+       string build = *it;
+       string check;
               
-         
-              if( species_name == build)
-                {
-                   matches.push_back(build);
-                   return matches;
-                }
-               
-            
+       if( species_name == build)
+       {
+         matches.push_back(build);
+         return matches;
+       }
+       
+       else 
+       {
+          for ( int i = 0; i < build.length(); i++)
+          {
+           check = check + build[i];
+           if ( build[i] == ' ' )
+              if ( check == species_name)
+              {
+                 matches.push_back(check);
+                 break;
+              }
            
-
-              else {
-                     for ( int i = 0; i < build.length(); i++)
-                         {
-                                   check = check + build[i];
-                                   if ( build[i] == ' ' )
-                                      if ( check == species_name)
-                                          {
-                                            matches.push_back(check);
-                                            break;
-                                          }
-                                   
-                          }
-                  }
-          }
-       return matches;
+           }
+        }
+      }
+     return matches;
 }
+
+
+
+/*int treeidNum, dbhNum, zipcoNum;
+      double x_num, y_num;
+      string stat, heal, spccommon, bor;
+      cout<<"find node:(treeidNum, dbhNum, stat, heal, spccommon, zipcoNum, bor, x_num, y_num)";
+      cin>>treeidNum>>dbhNum>>stat>>heal>>spccommon>>zipcoNum>>bor>>x_num>>y_num;
+
+      Tree temp ( treeidNum, dbhNum, stat, heal, spccommon, zipcoNum, bor, x_num, y_num);
+      collection.find(temp);
+      */
           
                                           

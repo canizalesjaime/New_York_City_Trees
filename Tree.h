@@ -1,7 +1,7 @@
 /******************************************************************************************************************************************
 Title  : Tree.h
 Author : Jaime Canizales 
-Created on : March 20, 2017
+Created on : January 1st, 2018
 Purpose : The tree class creates an object that encapsulates all the data for a specific tree. The tree objects are to be stored in the
           treecollection class.
 

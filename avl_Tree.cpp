@@ -1,7 +1,7 @@
 /******************************************************************************************************************************************
   Title          : avl_Tree.cpp
   Author         : Jaime Canizales
-  Created on     : March 26, 2017
+  Created on     : January 1st, 2018
   Description    : The implemetation to an AVL tree class
   Purpose        : Using the avl tree data structure the tree items will be stored and organized.
  
@@ -10,7 +10,7 @@
 #include <iostream>
 #include "Tree.h"
 #include "avl_Tree.h"
-#include "tree_collection.h"
+#include "Tree_Collection.h"
 using namespace std;
 
 AVL_Tree::AVL_Tree()
@@ -89,14 +89,14 @@ void AVL_Tree::print( )
 void AVL_Tree::print(avlNode*& t)
 {
       if ( t != NULL )
-   {
-      print( t->left);
-      cout<<t->element;
-      print( t->right);
-    }
+      {
+        cout<<t->element;
+        print( t->right);
+        print( t->left);
+      }
 }
 //print
-//*******************************************************************************************************************************************
+//*****************************************************************************************************************************************
 
 const Tree& AVL_Tree::find(const Tree& x) 
 { 
