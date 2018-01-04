@@ -10,7 +10,7 @@
 #include <iostream>
 #include "Tree.h"
 #include "avl_Tree.h"
-#include "Tree_Collection.h"
+
 using namespace std;
 
 AVL_Tree::AVL_Tree()
@@ -22,12 +22,6 @@ AVL_Tree::AVL_Tree()
 //constructor
 //****************************************************************************************************************************************
 
-void AVL_Tree::insert( const Tree& x)
-{
-     insert( x, root);    
-}
-//wrapper insert 
-//***************************************************************************************************************************************
 void AVL_Tree::insert( const Tree& x, avlNode*& t)
 {
 
@@ -81,11 +75,6 @@ int AVL_Tree:: height( avlNode *t )
 //height 
 //******************************************************************************************************************************************
 
-void AVL_Tree::print( ) 
-{
-    print( root);
-}
-
 void AVL_Tree::print(avlNode*& t)
 {
       if ( t != NULL )
@@ -97,15 +86,6 @@ void AVL_Tree::print(avlNode*& t)
 }
 //print
 //*****************************************************************************************************************************************
-
-const Tree& AVL_Tree::find(const Tree& x) 
-{ 
-    find(x, root);
-    
-}
-
-//find 
-//****************************************************************************************************************************************
 
 const Tree& AVL_Tree::find(const Tree& x, avlNode*& t)
 {
@@ -121,7 +101,7 @@ const Tree& AVL_Tree::find(const Tree& x, avlNode*& t)
     else cout<<"found!!"<<endl<<x;
 }
 
-//find continued
+//find
 //*****************************************************************************************************************************************
 
 avlNode::avlNode(Tree item)

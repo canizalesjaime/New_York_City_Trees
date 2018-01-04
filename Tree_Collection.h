@@ -13,39 +13,29 @@
 #define __Tree_Collection_H__
 
 #include <string>
-#include <iostream>
 #include <list>
 #include <set>
 #include "Tree.h"
 #include "avl_Tree.h"
+#include <unordered_map>
 
-struct boroContainer
-{
-   string b;
-   int treesInBorough;
-};
-
-using namespace std;
 
 class TreeCollection
 {
 public:
     TreeCollection ( );
     //~TreeCollection ( );
-    //int total_tree_count(); 
-    //int count_of_tree_species ( const string & species_name ); 
-    //int count_of_trees_in_boro( const string & boro_name ); 
+    int total_tree_count(); 
+    //int count_of_tree_species ( const string & species_name );
+    int count_of_trees_in_boro( const string & boro_name ); 
     list<string> get_matching_species(const string & species_name); 
     void insert( const Tree& x);
-    void find(const Tree& x);
-    friend class AVL_Tree;
     
 private:   
-    boroContainer b_t[5];
+    unordered_map<string,int> numberOfTreesinEachBorough = {{"Manhattan",0},{"Brooklyn",0},{"Queens",0},{"Bronx",0},{"Staten Island",0}};
     set<string> tree_species;
     AVL_Tree collection;
     
-
 };
 
 

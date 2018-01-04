@@ -1,5 +1,5 @@
 /******************************************************************************************************************************************
-Title  : Treemain.cpp
+Title  : main.cpp
 Author : Jaime Canizales 
 Created on : January 1st, 2018
 Purpose : To open CSV file and check its correctness, then separate the data from the file into separate tree objects and store those 
@@ -13,7 +13,6 @@ Purpose : To open CSV file and check its correctness, then separate the data fro
 #include <fstream>
 #include <sstream>
 #include "Tree_Collection.h"
-#include "avl_Tree.h"
 #include <list>
 
 using namespace std;
@@ -41,12 +40,8 @@ int main ( int argc, char * argv[])
     while( getline( input, line ))
     {
         stringstream strStream(line);
-        string treeid, dbh, zipco;                 //ints to be
-        string stat, heal, spccommon, bor;
-        string x_, y_ ;                            //doubles to be
         string reader = "";
         string quote;
-
         string tempData[9];
 
         for ( int i = 0; i < 9 ; i++)
@@ -54,28 +49,22 @@ int main ( int argc, char * argv[])
             getline(strStream, reader, ',');
             tempData[i] = reader;
         }   
-      
-        treeid = tempData[0];
-        dbh    = tempData[1];
-        stat   = tempData[2];
-        heal   = tempData[3];
-        spccommon = tempData[4];
-        zipco  = tempData[5];
-        bor    = tempData[6];
-        x_     = tempData[7];
-        y_     = tempData[8];
-
+           
+        string stat   = tempData[2];
+        string heal   = tempData[3];
+        string spccommon = tempData[4];
+        string bor = tempData[6];
                
         int treeidNum, dbhNum, zipcoNum;
-        stringstream treeidconverter(treeid);
-        stringstream dbhconverter(dbh);
-        stringstream zipcoconverter(zipco);
+        stringstream treeidconverter(tempData[0]);
+        stringstream dbhconverter(tempData[1]);
+        stringstream zipcoconverter(tempData[5]);
         treeidconverter>> treeidNum;
         dbhconverter>> dbhNum;
         zipcoconverter>> zipcoNum;  
         double x_num, y_num;
-        stringstream xConverter(x_);
-        stringstream yConverter(y_);
+        stringstream xConverter(tempData[7]);
+        stringstream yConverter(tempData[8]);
         xConverter>> x_num;
         yConverter>> y_num;
         Tree temp ( treeidNum, dbhNum, stat, heal, spccommon, zipcoNum, bor, x_num, y_num);
@@ -89,14 +78,13 @@ int main ( int argc, char * argv[])
         string look;
         while ( look != "quit" )
         {
-            cout<<"Enter the tree species to learn more about it ('quit' to stop):"<<endl;
+            cout<<"Enter the tree species to learn more about it ('quit' to stop):";
             getline(cin,look);
             list<string> allmatches = catalog.get_matching_species(look);
             list<string>::const_iterator it;
 
             for ( it = allmatches.begin(); it != allmatches.end(); ++it)
                 cout<<*it<<endl;
-
         }
 return 0;
 }                            

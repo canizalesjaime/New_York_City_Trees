@@ -9,7 +9,7 @@ Purpose : The tree class creates an object that encapsulates all the data for a 
 #ifndef TREE_H
 #define TREE_H  
 
-#include <string>
+#include<string>
 
 using namespace std;
 
