@@ -28,7 +28,7 @@ public:
     int total_tree_count(); 
     //int count_of_tree_species ( const string & species_name );
     int count_of_trees_in_boro( const string & boro_name ); 
-    list<string> get_matching_species(const string & species_name); 
+    list<string> get_matching_species(string & species_name); 
     void insert( const Tree& x);
     
 private:   

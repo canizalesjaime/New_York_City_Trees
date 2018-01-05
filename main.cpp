@@ -82,9 +82,9 @@ int main ( int argc, char * argv[])
             getline(cin,look);
             list<string> allmatches = catalog.get_matching_species(look);
             list<string>::const_iterator it;
-
+            cout<<"All matching species:"<<endl;
             for ( it = allmatches.begin(); it != allmatches.end(); ++it)
-                cout<<*it<<endl;
+                cout<<"     "<<*it<<endl;
         }
 return 0;
 }                            

@@ -15,6 +15,8 @@
 #include "Tree_Collection.h"
 #include <unordered_map>
 #include <iostream>
+#include <stdio.h>
+#include <ctype.h>
 
 using namespace std;
 
@@ -35,7 +37,7 @@ void TreeCollection::insert(const Tree& x)
 //insert 
 //******************************************************************************************************************************************
 
-list<string> TreeCollection::get_matching_species(const string & species_name)
+list<string> TreeCollection::get_matching_species(string & species_name)
 {
       set<string>::const_iterator it; 
 
@@ -44,30 +46,30 @@ list<string> TreeCollection::get_matching_species(const string & species_name)
      for ( it = tree_species.begin(); it != tree_species.end(); ++it)
      {
        string build = *it;
-       string check = "";
+       for(int i = 0; i < build.length(); i++)
+          build[i] = tolower(build[i]);
+  
+       for(int i = 0; i < species_name.length(); i++)
+          species_name[i] = tolower(species_name[i]);
               
        if( species_name == build)
-       {
          matches.push_back(build);
-         return matches;
-       }
        
        else 
        {
-          for ( int i = 0; i < build.length(); i++)
-          {
-           check = check + build[i];
-           if ( build[i] == ' ' )
-           {
-              cout<<"did you make it"<<endl;
-              if ( check == species_name)
-              {
-                 matches.push_back(build);
-                 break;
-              }
-            }
-           }
-        }
+          string build2 = " " + build;
+          build2 = build2 + " ";
+          string build3 = "-" + build;
+          build3 = build3 + "-";
+          string check = " " + species_name ;
+          check = check + " ";
+          string check2 = "-" + species_name;
+          check2 = check2 + "-";
+          size_t pos = build2.find(check);
+          size_t pos2 = build3.find(check2);
+          if(pos != std::string::npos || pos2 != std::string::npos)
+             matches.push_back(*it);
+       }
       }
      return matches;
 }
@@ -93,7 +95,7 @@ int TreeCollection::count_of_trees_in_boro( const string & boro_name )
 
 //int TreeCollection::count_of_tree_species ( const string & species_name )
 //{
-  //  if(samename(
+//  find(species_name, collection.root
 
 
 
