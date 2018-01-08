@@ -16,7 +16,8 @@ using namespace std;
 class Tree 
 {
 public:
-Tree();          
+Tree ();
+Tree(string species_name);          
 Tree( int id, int diam, string stat,
       string heal, string spc, int zip,
       string boro, double x, double y    );

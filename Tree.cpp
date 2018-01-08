@@ -83,10 +83,12 @@ bool operator== ( const Tree &t1, const Tree &t2 )
 
 bool operator< ( const Tree &t1, const Tree &t2 )
 {
-    if ( t1.spc_common <= t2.spc_common )
-       if( t1.tree_id < t2.tree_id )
+    if ( t1.spc_common < t2.spc_common )
+         return true;
+       if ( t1.spc_common == t2.spc_common )
+         if( t1.tree_id < t2.tree_id )
           return true;
- 
+  
     else return false;
 }
 
@@ -114,10 +116,15 @@ bool islessname ( const Tree &t1, const Tree &t2 )
 
 //islessname
 //****************************************************************************************************************************************/
-Tree::Tree()
+Tree::Tree(string species_name)
 {
+   spc_common = species_name;
 }
 
+Tree::Tree()
+{
+
+}
 
 
 

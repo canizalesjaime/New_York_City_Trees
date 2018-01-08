@@ -11,6 +11,10 @@
 #define __AVL_H__
 
 #include "Tree.h"
+#include <list>
+#include <unordered_map>
+
+using namespace std;
 
 class avlNode
 {
@@ -35,7 +39,7 @@ public:
     const Tree& find(const Tree & x, avlNode*& t);    
     //const Tree& findMin () const;
    // const Tree& findMax () const;
-    //list<Tree> findallmatches ( const Tree & x ) const;
+ list<Tree> findallmatches ( const Tree & x, avlNode*& t, list<Tree> &found,unordered_map<string,int> &count_of_species_in_each_boro ) const;
     
     // Displaying the tree contents:
     void print( avlNode*& t) ; 

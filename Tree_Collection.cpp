@@ -40,7 +40,7 @@ void TreeCollection::insert(const Tree& x)
 list<string> TreeCollection::get_matching_species(string & species_name)
 {
       set<string>::const_iterator it; 
-
+      string save = species_name;
       list<string> matches ;
 
      for ( it = tree_species.begin(); it != tree_species.end(); ++it)
@@ -53,7 +53,7 @@ list<string> TreeCollection::get_matching_species(string & species_name)
           species_name[i] = tolower(species_name[i]);
               
        if( species_name == build)
-         matches.push_back(build);
+         matches.push_back(*it);
        
        else 
        {
@@ -71,6 +71,7 @@ list<string> TreeCollection::get_matching_species(string & species_name)
              matches.push_back(*it);
        }
       }
+     species_name = save;
      return matches;
 }
 
@@ -93,34 +94,11 @@ int TreeCollection::count_of_trees_in_boro( const string & boro_name )
 //total number of trees in a given borough
 //************************************************************************************************************************************
 
-//int TreeCollection::count_of_tree_species ( const string & species_name )
-//{
-//  find(species_name, collection.root
+int TreeCollection::count_of_tree_species ( const string & species_name, unordered_map<string,int> &count_of_species_in_each_boro )
+{
+    Tree lookup(species_name);
+    list<Tree> matching_Objects; 
+    matching_Objects = collection.findallmatches(lookup,collection.root ,matching_Objects, count_of_species_in_each_boro);
+    return matching_Objects.size();    
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                 

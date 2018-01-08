@@ -10,6 +10,8 @@
 #include <iostream>
 #include "Tree.h"
 #include "avl_Tree.h"
+#include <list>
+#include <unordered_map>
 
 using namespace std;
 
@@ -36,8 +38,6 @@ void AVL_Tree::insert( const Tree& x, avlNode*& t)
          insert( x, t->right );
 
     balance( t );
-
-   
   
 }
 // insert
@@ -98,7 +98,7 @@ const Tree& AVL_Tree::find(const Tree& x, avlNode*& t)
     else if( t->element < x )
          find( x, t->right );
 
-    else cout<<"found!!"<<endl<<x;
+    else return t->element;
 }
 
 //find
@@ -170,6 +170,37 @@ void AVL_Tree::rotateWithRightChild( avlNode * & k2 )
 //rr rotation (fix up maybe)
 //*****************************************************************************************************************************************
 
+list<Tree> AVL_Tree::findallmatches ( const Tree & x, avlNode *& t, list<Tree> &found,
+                                      unordered_map<string,int> &count_of_species_in_each_boro ) const 
+{
+   if( t != NULL)
+   {	   
+    if( islessname(x, t->element))
+       findallmatches( x, t->left, found, count_of_species_in_each_boro );
 
-  
+    else if( islessname(t->element , x))
+       findallmatches( x, t->right, found, count_of_species_in_each_boro );
+   
+     else if( samename(x,t->element) )
+     {               
+       found.push_back(t->element);
+
+       if(t->element.borough_name() == "Manhattan")
+          count_of_species_in_each_boro["Manhattan"]++;
+       else if(t->element.borough_name() == "Bronx")
+          count_of_species_in_each_boro["Bronx"]++;
+       else if(t->element.borough_name() == "Brooklyn")
+          count_of_species_in_each_boro["Brooklyn"]++;
+       else if(t->element.borough_name() == "Queens")
+          count_of_species_in_each_boro["Queens"]++;
+       else if(t->element.borough_name() == "Staten Island")
+          count_of_species_in_each_boro["Staten Island"]++;
+
+       findallmatches( x, t->left, found, count_of_species_in_each_boro );
+       findallmatches( x, t->right, found, count_of_species_in_each_boro);
+      }
+    }
+    return found;
+
+} 
 
