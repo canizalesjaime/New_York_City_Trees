@@ -24,7 +24,7 @@ class TreeCollection
 {
 public:
     TreeCollection ( );
-    //~TreeCollection ( );
+    ~TreeCollection ( );
     int total_tree_count(); 
     int count_of_tree_species ( const string & species_name, unordered_map<string,int> &count_of_species_in_each_boro );
     int count_of_trees_in_boro( const string & boro_name ); 

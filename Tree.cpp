@@ -26,7 +26,17 @@ Tree::Tree ( int id, int diam, string stat, string heal, string spc, int zip, st
        y_sp = y;
 }
 
-//Constructor
+Tree::Tree(string species_name)
+{
+   spc_common = species_name;
+}
+
+Tree::Tree()
+{
+}
+
+
+//Constructors
 //****************************************************************************************************************************************/
 
 string Tree::common_name( ) const
@@ -116,16 +126,6 @@ bool islessname ( const Tree &t1, const Tree &t2 )
 
 //islessname
 //****************************************************************************************************************************************/
-Tree::Tree(string species_name)
-{
-   spc_common = species_name;
-}
-
-Tree::Tree()
-{
-
-}
-
 
 
 

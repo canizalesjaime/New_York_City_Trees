@@ -27,6 +27,14 @@ TreeCollection::TreeCollection()
 //constructor
 //*****************************************************************************************************************************************
 
+TreeCollection::~TreeCollection()
+{
+       collection.clear(collection.root);
+}
+
+//destructor
+//******************************************************************************************************************************************
+
 void TreeCollection::insert(const Tree& x)
 {
     collection.insert( x, collection.root);  
@@ -102,3 +110,5 @@ int TreeCollection::count_of_tree_species ( const string & species_name, unorder
     return matching_Objects.size();    
 }
 
+//counts number of tree species in each borough
+//**************************************************************************************************************************************

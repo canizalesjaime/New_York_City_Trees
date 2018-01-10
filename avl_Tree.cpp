@@ -24,6 +24,33 @@ AVL_Tree::AVL_Tree()
 //constructor
 //****************************************************************************************************************************************
 
+AVL_Tree::~AVL_Tree()
+{
+     clear(root);
+}
+
+//destructor
+//*****************************************************************************************************************************************
+
+AVL_Tree::AVL_Tree  ( const AVL_Tree & tree)
+{
+    root = clone(tree.root);
+}
+
+avlNode* AVL_Tree::clone( avlNode*t ) const
+{
+  if( t == nullptr )
+    return nullptr;
+
+  else
+  { 
+    int h = t->height;
+    return new avlNode( t->element, clone( t->left ), clone( t->right ),h );
+  }
+}
+//copy constructor
+//****************************************************************************************************************************************
+
 void AVL_Tree::insert( const Tree& x, avlNode*& t)
 {
 
@@ -104,17 +131,6 @@ const Tree& AVL_Tree::find(const Tree& x, avlNode*& t)
 //find
 //*****************************************************************************************************************************************
 
-avlNode::avlNode(Tree item)
-{
-     element = item;
-     left = NULL;
-     right = NULL;
-     height = 0;
-}
-
-//constructor for struct 
-//****************************************************************************************************************************************
-
 void AVL_Tree::rotateWithLeftChild( avlNode * & k2 )
 {
     avlNode *k1 = k2->left;
@@ -167,7 +183,7 @@ void AVL_Tree::rotateWithRightChild( avlNode * & k2 )
     k2 = k1;
 }
 
-//rr rotation (fix up maybe)
+//rr rotation
 //*****************************************************************************************************************************************
 
 list<Tree> AVL_Tree::findallmatches ( const Tree & x, avlNode *& t, list<Tree> &found,
@@ -203,4 +219,95 @@ list<Tree> AVL_Tree::findallmatches ( const Tree & x, avlNode *& t, list<Tree> &
     return found;
 
 } 
+
+//finds all tree objects in avl tree that have a matching spc_common with the tree passed
+//*************************************************************************************************************************************
+
+void AVL_Tree::remove( const Tree & x, avlNode*&t)
+{
+   if( t == nullptr )
+	return;   // Item not found; do nothing
+
+   if( x < t->element )
+	remove( x, t->left );
+
+   else if( t->element < x )
+	remove( x, t->right );
+
+   else if( t->left != nullptr && t->right != nullptr )  // Two children
+   {
+	t->element = findMin( t->right  )->element;
+	remove( t->element, t->right );
+   }
+
+   else
+   {
+	avlNode *oldNode = t;
+	t = ( t->left != nullptr ) ? t->left : t->right;
+
+	delete oldNode;
+   }
+
+   balance( t );
+}
+
+//remove
+//********************************************************************************************************************************
+
+avlNode * AVL_Tree::findMin( avlNode *t ) const
+{
+   if( t == nullptr )
+      return nullptr;
+
+   if( t->left == nullptr )
+     return t;
+
+   return findMin( t->left );
+}
+
+
+avlNode * AVL_Tree::findMax( avlNode *t ) const
+{
+   if( t != nullptr )
+      while( t->right != nullptr )
+           t = t->right;
+
+    return t;
+}
+
+// findMin and findMax
+//*****************************************************************************************************************************************
+
+void AVL_Tree::clear(avlNode * & t ) 
+{
+   if( t != nullptr )
+   {
+     clear( t->left );
+     clear( t->right );
+     delete t;
+   }
+   t = nullptr;
+}
+
+//clear avl tree
+//**************************************************************************************************************************************
+avlNode::avlNode(Tree item)
+{
+     element = item;
+     left = NULL;
+     right = NULL;
+     height = 0;
+}
+
+avlNode::avlNode(Tree item, avlNode* l, avlNode* r, int ht)
+{
+     element = item;
+     left = l;
+     right = r;
+     height = ht;
+}
+
+//constructor for node class 
+//****************************************************************************************************************************************
+
 
