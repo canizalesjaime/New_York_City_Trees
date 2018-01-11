@@ -1,10 +1,10 @@
 /****************************************************************************************************************************************
-  Title          : tree_collection.h
+  Title          : 	Tree_Collection.h
   Author         : Jaime Canizales
   Created on     : January 1st, 2018
   Description    : The header file for the TreeCollection class
-  Purpose        : Encapsulates the containers that represent the set of trees
-                   and the collections properties
+  Purpose        : Represents the data from new york city trees using an avl tree, a set for all the types of trees and an unordered_map 
+                   To store the number of trees in each borough.
  
 *****************************************************************************************************************************************/
 

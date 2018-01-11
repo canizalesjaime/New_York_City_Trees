@@ -3,8 +3,7 @@
   Author         : Jaime Canizales
   Created on     : january 1st, 2018
   Description    : The implementation file for the TreeCollection class
-  Purpose        : Encapsulates the containers that represent the set of trees
-                   and the collections properties
+  Purpose        : 
  
 *****************************************************************************************************************************************/
 
